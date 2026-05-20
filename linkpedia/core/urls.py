@@ -1,10 +1,31 @@
 from django.urls import path
-from core.views import login, logout, home
 
+from .views import *
 
 urlpatterns = [
-    path('login/', login, name='login'),
-    path('logout/', logout, name='logout'),
-    path('index/', home, name='index'),
-    path('', home,name='home')
+
+    path(
+        '',
+        home,
+        name='home'
+    ),
+
+    path(
+        'create/',
+        create,
+        name='create'
+    ),
+
+    path(
+        'update/<int:id>/',
+        update,
+        name='update'
+    ),
+
+    path(
+        'delete/<int:id>/',
+        delete,
+        name='delete'
+    )
+
 ]
