@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import LinkModel
 from .forms import LinkForm, LoginForm
@@ -26,10 +27,21 @@ def login(request):
             'password'
         )
 
-        user = authenticate(
-            username=email,
-            password=password
-        )
+        try:
+
+            user_db = User.objects.get(
+                email=email
+            )
+
+            user = authenticate(
+                username=user_db.username,
+                password=password
+            )
+
+        except User.DoesNotExist:
+
+            user = None
+
 
         if user:
 
@@ -49,14 +61,13 @@ def login(request):
             'form': form
         }
     )
-
-
+    
 def logout(request):
 
     auth_logout(request)
 
     return render(
-        request,
+     request,
         'logout.html'
     )
 
@@ -72,6 +83,47 @@ def home(request):
             'links': links
         }
     )
+    
+@login_required
+def list_links(request):
+
+    links = LinkModel.objects.all()
+
+    return render(
+        request,
+        'list.html',
+        {
+            'links': links
+        }
+    )
+    
+@login_required
+def edit_links(request):
+
+    links = LinkModel.objects.all()
+
+    return render(
+        request,
+        'edit.html',
+        {
+            'links': links
+        }
+    )
+
+
+@login_required
+def delete_links(request):
+
+    links = LinkModel.objects.all()
+
+    return render(
+        request,
+        'delete_list.html',
+        {
+            'links': links
+        }
+    )
+    
 
 @login_required
 def create(request):
@@ -140,3 +192,4 @@ def delete(request, id):
     return redirect(
         'home'
     )
+

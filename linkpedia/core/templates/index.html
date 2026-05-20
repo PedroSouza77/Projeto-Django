@@ -1,23 +1,239 @@
-<h1>Links</h1>
+<!DOCTYPE html>
+<html lang="pt_BR">
 
-<a href="{% url 'create' %}">
-    Novo
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+
+Painel de Ações
+
+</title>
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+>
+
+<style>
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Arial;
+
+}
+
+body{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+90deg,
+#041c26,
+#23495a
+);
+
+}
+
+.card{
+
+width:100%;
+
+max-width:600px;
+
+background:#ececec;
+
+padding:28px;
+
+border-radius:18px;
+
+box-shadow:
+0px
+10px
+25px
+rgba(
+0,
+0,
+0,
+0.3
+);
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:38px;
+
+margin-bottom:35px;
+
+}
+
+.btn{
+
+display:block;
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:15px;
+
+text-decoration:none;
+
+text-align:center;
+
+font-size:22px;
+
+border-radius:6px;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+opacity:.9;
+
+}
+
+.btn i{
+
+margin-right:10px;
+
+}
+
+.create{
+
+background:#0d6efd;
+
+}
+
+.list{
+
+background:#6c757d;
+
+}
+
+.edit{
+
+background:#ffc107;
+
+color:black;
+
+}
+
+.delete{
+
+background:#dc3545;
+
+}
+
+.logout{
+
+background:white;
+
+color:black;
+
+border:1px solid black;
+
+margin-top:25px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>
+
+Painel de Ações
+
+</h1>
+
+<a
+class="btn create"
+href="{% url 'create' %}"
+>
+
+<i class="bi bi-plus-lg"></i>
+
+Cadastrar
+
 </a>
 
-{% for x in links %}
+<a
+class="btn list"
+href="{% url 'list' %}"
+>
 
-<p>
+<i class="bi bi-list-ul"></i>
 
-{{ x.titulo }}
+Listar
 
-<a href="{% url 'update' x.id %}">
+</a>
+
+<a
+class="btn edit"
+href="{% url 'edit' %}"
+>
+
+<i class="bi bi-pencil-square"></i>
+
 Editar
+
 </a>
 
-<a href="{% url 'delete' x.id %}">
+<a
+class="btn delete"
+href="{% url 'delete_list' %}"
+>
+
+<i class="bi bi-trash"></i>
+
 Excluir
+
 </a>
 
-</p>
+<a
+class="btn logout"
+href="{% url 'logout' %}"
+>
 
-{% endfor %}
+<i class="bi bi-box-arrow-right"></i>
+
+Logout
+
+</a>
+
+</div>
+
+</body>
+
+</html>

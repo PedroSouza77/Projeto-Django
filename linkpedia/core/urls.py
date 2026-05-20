@@ -6,7 +6,10 @@ from .views import (
     logout,
     create,
     update,
-    delete
+    delete,
+    list_links,
+    edit_links,
+    delete_links
 )
 
 urlpatterns = [
@@ -46,4 +49,22 @@ urlpatterns = [
         delete,
         name='delete'
     ),
+
+    path(
+'list/',
+list_links,
+name='list'
+),
+    
+    path(
+    'edit/',
+    edit_links,
+    name='edit'
+),
+
+path(
+    'delete-list/',
+    delete_links,
+    name='delete_list'
+),
 ]
