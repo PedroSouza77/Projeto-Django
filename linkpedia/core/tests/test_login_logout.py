@@ -23,12 +23,14 @@ class Login_OK_Test(TestCase):
             follow=True
         )
 
+
     def test_response(self):
 
         self.assertEqual(
             self.resp.status_code,
             HTTPStatus.OK
         )
+
 
     def test_template_used(self):
 
@@ -58,12 +60,14 @@ class Logout_Get_OK_Test(TestCase):
             follow=True
         )
 
+
     def test_response(self):
 
         self.assertEqual(
             self.resp.status_code,
             HTTPStatus.OK
         )
+
 
     def test_template_used(self):
 
